@@ -1,4 +1,4 @@
-import {typItemApiUrl,dictItemApiUrl,dictsItemApiUrl} from './routes';
+import {dictsTypesApiUrl,typItemApiUrl,dictItemApiUrl,dictsItemApiUrl} from './routes';
 import * as api from './apis';
 
 export const get = (id) =>
@@ -16,6 +16,8 @@ export const getAllDict = () =>
 export const getAllDicts = () =>
     api.get(dictsItemApiUrl())
 
+export const getAllDictsType = (id) =>
+    api.get(dictsTypesApiUrl(id))
 
 export const createType = params =>
     api.post(typItemApiUrl(),{...params})

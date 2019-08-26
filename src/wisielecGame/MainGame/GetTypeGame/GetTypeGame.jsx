@@ -18,7 +18,6 @@ class GetTypeGame extends Component {
     type:[],
     isTypeLoading:false,
     addedTypes:[],
-    whoIsChcked:[],
     };
  
   componentDidMount = async () => {
@@ -76,6 +75,7 @@ class GetTypeGame extends Component {
     this.setState({type: type})
   }
 
+
   onClickAddType = e => {
     const chd = e.target.checked;
     const cht = this.state.checkTab;
@@ -112,7 +112,7 @@ render () {
     if(user[0].rola === -1){
       return <div>wejście nieuprawnione</div>
     }
-    console.log('gettype ',this.state.type);
+
    
     return (
       <div className="GetTypeGame">
@@ -122,7 +122,6 @@ render () {
               checkTab={this.state.checkTab}
               addedTypes={this.state.addedTypes}
               addedType={this.props.addedType}
-              whoIsChcked={this.state.whoIsChcked}
               onAceptType={this.onAceptType}
               
           />

@@ -10,6 +10,11 @@ export const dictItemApiUrl = id =>
 export const dictsItemApiUrl = id =>
     id ? `${serverUrl}/dicts/${id}` : `${serverUrl}/dicts/`;
 
+export const dictsTypesApiUrl = id => {
+    console.log('id',`${serverUrl}/dicts/typ_id?typ=${id}`)
+    return id ? `${serverUrl}/dicts/typ_id?typ=${id}` : `${serverUrl}/dicts/`;
+}
+
 export const userIdApiUrl = id =>
     id ? `${serverUrl}/user/${id}` : `${serverUrl}/user/`;
 

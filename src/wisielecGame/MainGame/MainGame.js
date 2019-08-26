@@ -48,17 +48,22 @@ class MainGame extends Component {
  
  
   componentDidMount = async () => {
-     const type = await getAllType.getAllTypes();
-     const dict = await getAllType.getAllDicts();
-     
-     this.setState({
-       type,
-       dict
-       })
+    const {addedType} = this.props;
+    let dict=[];
+
+       if(addedType.length > 0){
+          dict = await getAllType.getAllDictsType(addedType);
+       }else{
+          dict = await getAllType.getAllDicts();
+       }
+       this.setState({
+        dict
+        })
  
-  }
+     }
 
   componentDidUpdate = ()=>{
+   
     if( !this.state.hasloIsOk ){
     if(this.arraysEqual(this.state.tabHaslo,this.state.tabZgadnijHaslo)){
       this.setState({
@@ -272,10 +277,13 @@ arraysEqual = (a, b) => {
         } = this.state;
     
         const {onZalogowac} = this.props;
-  
+
+
+
  return ( 
 <>
-
+{dict.length !== 0? 
+<>
 {gameOver? <PanelGameOver  
   isWybraneHaslo={isWybraneHaslo}
   wybraneHaslo={wybraneHaslo}
@@ -362,7 +370,18 @@ arraysEqual = (a, b) => {
     
       </div>
     } 
+    </>
+  :
+  <div  className="ErrorPanel">
+    <h1>Wybrałeś typ gry, który nie ma jeszcze haseł</h1>
 
+  <MenuGameView 
+    addedType={this.props.addedType}
+    onZalogowac={onZalogowac} 
+    user={this.props.user} 
+   />
+   </div>
+  }
 </>
   );
  }
