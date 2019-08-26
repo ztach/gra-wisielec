@@ -1,0 +1,113 @@
+.LoginPages{
+    height:200px;            
+
+    &___title{
+        font-size:18px;
+        font-weight: bold;
+        text-align:center;
+        text-transform: uppercase;
+    }
+    &__error{
+        color:red;
+        
+        display:block;
+        height:20px;
+    }
+
+
+    &__insert {
+        width:100%;
+        height:100%;
+        display:flex;
+        flex-direction: column;
+
+        &_login{
+            padding:5px;
+            margin: 0 0 15px 0;
+        }
+
+        &_password{
+            padding:5px;
+        }
+
+        &_label {
+            display:flex;
+            flex-direction: column;
+            
+            width: 100%;
+            height:90%;
+            color:green;
+        }
+
+    }
+
+    &__btn{
+        position: relative;
+        left:0px;
+        bottom:5%;
+        display:flex;
+        flex-direction: row;
+
+        &_left{
+            flex-grow: 1;
+            font-size:14px;
+            padding: 10px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: rgb(150, 75, 21);
+            color:white;
+            border-radius: 11px;
+        }
+        &_left:hover{
+            cursor: pointer;
+            background-color: white;
+            color:rgb(150, 75, 21);
+        }
+        &_right{
+            flex-grow: 1;
+            font-size:14px;
+            padding: 10px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: rgb(150, 75, 21);
+            color:white;
+            border-radius: 11px;
+        }
+        &_right:hover{
+            cursor: pointer;
+            background-color: white;
+            color:rgb(150, 75, 21);
+        }
+    }
+}
+
+.modal{
+    padding:20px;
+    width:300px;
+    height:200px;
+    background-color:white;
+    border: 2px hidden #1C6EA4;
+    border-radius: 11px;
+    box-shadow: 0px 0px 33px 1px rgba(62,86,134,0.8);   
+    z-index: 10;
+
+}
+
+.modal-footer{
+
+}
+details{
+    padding:10px;
+    margin:5px 0;
+}
+
+details div {
+    padding:1px;
+    margin:5px 0;
+}
+
+summary {
+    font-size:16px;
+    padding:2px;
+    text-transform: uppercase;
+}

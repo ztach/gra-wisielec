@@ -1,0 +1,155 @@
+@import '../../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+
+.Punktacja{
+    padding:40px;
+    font-size:18px;
+    background-color:rgba(236, 236, 236, 0.129);
+    &___opis {
+      margin:20px;
+      font-size:18px;
+    }
+    &___zalogowany{
+      margin:20px;
+      font-size:18px;
+      &-login{
+        font-size:28px;
+        color:red;
+      }
+      &-login::before{
+        font-family: "Font Awesome 5 Free"; 
+        font-size:24px;
+        //content: '\f2b9 ~ \f2bb:  - \f35b   =   \f30a  x \f497   😒 😋 💐 👙 ⟿';
+        content: '\f2bb';
+        padding:20px 0;
+      }
+      
+
+    }
+}
+
+// .Punktacja::before{
+//   font-family: "Font Awesome 5 Free"; 
+//   font-size:30px;
+//   //content: '\f2b9 ~ \f2bb:  - \f35b   =   \f30a  x \f497   😒 😋 💐 👙 ⟿';
+//   content: '\f2bb';
+//   padding:20px 0;
+// }
+
+
+
+table.paleBlueRows  {
+  font-size:30px;
+}
+
+.modal__title{
+  font-size:18px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 0 10px 0; 
+}
+.modal__message{
+  font-size:18px;
+  text-align: justify;
+
+}
+.modal__exit{
+  position: fixed;
+  bottom:164px;
+  left:520px;
+  display:block;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: yellow;
+  color:black;
+  padding:5px 10px;
+}
+
+.btnOpis{
+    margin-left:5%;
+    padding: 4px 21px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border:1px rgb(90,28,28) solid;
+    background-color: rgb(90,28,28);
+    color:white;
+}
+.btnOpis:hover {
+    cursor:pointer;
+    border:1px rgb(221, 116, 116) solid;
+    background-color: black;
+    color:white;
+}
+
+  i.fas,
+  i.fab {
+    border: 1px solid red;
+  }
+
+  .fa{
+
+    font-size: 50px;
+
+      &-arrow-left {
+        color:red;
+        font-weight: bold;
+  
+      }
+  
+      &-fish {
+        color: salmon;
+      }
+
+      &-frog {
+        color: green;
+      }
+
+      &-user-ninja.vanished {
+        opacity: 0.50;
+      }
+
+      &-facebook {
+        color: rgb(59, 91, 152);
+      }
+}
+
+
+.zmdi{
+    display: block;
+    font-size: 30px;
+    width:65px;
+    box-align:initial;
+  &::after{
+    content: '\f2bb';
+    padding-left: 10px; 
+  }    
+}
+
+
+.zmdi {
+
+  &-arrow-left{
+      padding-left: 5px; 
+      border: 1px solid red;
+      background-color: yellow;
+      color:red;
+      font-weight: bold;
+    }
+  }
+  
+.btnBack {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  a {
+    text-decoration: none;
+  :hover{
+      color:yellow;
+      background-color: red;
+      cursor: pointer;
+      }
+    }
+  }
