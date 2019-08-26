@@ -41,6 +41,7 @@ const FormUser = props => {
                   <label className="LoginPage__insert_label">
                       Content *
                       <div className="LoginPage__error">{errors.content}</div>
+                      
                       <div className="LoginPage__not_admin">{message}</div>
                       
                       <>

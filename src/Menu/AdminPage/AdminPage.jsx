@@ -19,6 +19,7 @@ class AdminPage extends Component {
       isGetSesion:false,
       message:'',
       logowanie:false,
+      isVisible:true,
     };
 
   componentDidMount = async () => {  
@@ -43,9 +44,12 @@ class AdminPage extends Component {
       })
       }else{
         this.setState({
-          message:"Nie jesteś adminem!!! widok zabroniony!!!"
+          message:"Nie jesteś adminem!!! widok zabroniony!!!",
+          isVisible:true
         })
+        this.onMessageVisible()
       }
+
   }
 
   onAddUser = () => {
@@ -56,8 +60,10 @@ class AdminPage extends Component {
     })
     }else{
       this.setState({
-        message:"Nie jesteś adminem!!! edycja zabroniona!!!"
+        message:"Nie jesteś adminem!!! edycja zabroniona!!!",
+        isVisible:true
       })
+      this.onMessageVisible()
     }
   }
 
@@ -82,8 +88,16 @@ class AdminPage extends Component {
     })
   }
 
+  onMessageVisible = () => {
+    setTimeout(() => {
+    return this.setState({isVisible:false})
+    },
+    3000)
+  }
+
+
   render () {
-    const {users,rola,sesions} = this.state;
+    const {users,rola,sesions,message} = this.state;
     const {user} = this.props;
 
     const subminUser = values => {
@@ -112,12 +126,18 @@ class AdminPage extends Component {
           }
           </div>
         : 
-        this.state.message === "" ? 
+        message === "" ? 
             null 
           : 
-            <div className="error_message"> 
-              {this.state.message} 
-            </div>
+          <>
+          {this.state.isVisible?
+          <div className="error_message" > 
+            {message}
+          </div>
+          :
+          null
+          }
+          </>
         }
       </article>
 

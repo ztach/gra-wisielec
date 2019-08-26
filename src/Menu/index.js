@@ -20,7 +20,7 @@ class MyMenu extends PureComponent {
         id:2,
         login:'gość',
         password:'gosc',
-        rola:1
+        rola:-1
       }],
       modalActive:false,
       sesionIsSaved:false,
