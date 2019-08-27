@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form } from "formik";
+import {Link} from 'react-router-dom';
 
 const FormUser = props => {
   const {submitUser,message,onExitLogin} = props;  
@@ -7,8 +8,7 @@ const FormUser = props => {
     <div className="LoginPages">
             <h3 className="LoginPages___title">zaloguj się  </h3>
             <Formik
-             
-              onSubmit={value => submitUser(value) }
+              onSubmit={value => submitUser(value)}
               validate= { values => {
                   let errors = {};
                   if (!values.login || !values.password) {
@@ -53,7 +53,7 @@ const FormUser = props => {
                       </>
                   </label>
                   <div className="LoginPages__btn">
-                    <button className="LoginPages__btn_left" type="submit"  >
+                    <button className="LoginPages__btn_left" type="submit" onClick={()=><Link to="/gra" /> } >
                       Zaloguj
                     </button>
                     <button className="LoginPages__btn_right" type="exit" onClick={onExitLogin}>

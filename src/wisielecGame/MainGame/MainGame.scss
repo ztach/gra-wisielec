@@ -273,11 +273,19 @@ $kolor_tla_gry:rgb(89, 23, 23);
 }
 
 summary::after{
- 
   padding-right: 0.5em;
 }
 
 .ErrorPanel{
+  display: block;
+  width: 100%;
+  height: 100%;
   background-color: red;
+  text-align: center;
 }
 
+.ErrorPanel h1 {
+  padding:20px 0;
+  font-size: 30px;
+  font-weight: bold;
+}

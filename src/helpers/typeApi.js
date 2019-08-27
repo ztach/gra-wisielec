@@ -1,4 +1,4 @@
-import {dictsTypesApiUrl,typItemApiUrl,dictItemApiUrl,dictsItemApiUrl} from './routes';
+import {typCountInDictApiUrl,dictsTypesApiUrl,typItemApiUrl,dictItemApiUrl,dictsItemApiUrl} from './routes';
 import * as api from './apis';
 
 export const get = (id) =>
@@ -6,7 +6,10 @@ export const get = (id) =>
 
 export const getAllTypes = () => 
     api.get(typItemApiUrl()); 
- 
+
+export const getAllTypesCount = () => 
+    api.get(typCountInDictApiUrl()); 
+
 export const getd = (id) =>
 api.get(dictItemApiUrl(id))
 

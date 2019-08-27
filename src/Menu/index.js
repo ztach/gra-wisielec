@@ -38,8 +38,6 @@ class MyMenu extends PureComponent {
     })
   }
   
-
-  
   componentWillUnmount = () => {
     this.setState({
       dict:[],
@@ -80,7 +78,7 @@ class MyMenu extends PureComponent {
 
 
 
-    onLogowanie = async x => {
+  onLogowanie = async x => {
     
     const {login,password} = x;
     const loginId = await getUsers.getUserLogin(login);
@@ -126,11 +124,14 @@ class MyMenu extends PureComponent {
 
         this.onSetBeginSession(loginId[0].id);
 
+
+
      } else {
         this.setState({
           message:"Zły login lub hasło"
         })
      }
+
   }
 
   onWyLogowanie = async x => {
@@ -154,14 +155,14 @@ class MyMenu extends PureComponent {
   }
 
   
-  render () {
-    const {userSession,
-            modalActive, 
-            message, 
-            isLogged, 
-            user} = this.state;
+render () {
+  const {userSession,
+          modalActive, 
+          message, 
+          isLogged, 
+          user} = this.state;
 
-  return (
+return (
       <Router basename={process.env.PUBLIC_URL} >
       <div className="SplitPane"> 
       <header className="SplitPane-menu">
@@ -173,7 +174,6 @@ class MyMenu extends PureComponent {
           {<Header onZalogowac={this.onZalogowac} isLogged={isLogged} user={user} />}
         </div>
       </header>
-
       
       <main  className="SplitPane-main">
         {<Pages onAddedTypeState={this.onAddedTypeState} addedType={this.state.addedType} onZalogowac={this.onZalogowac} userSession={userSession} user={user} onLogowanie={this.onLogowanie} modalActive={modalActive}  message={message} isLogged={isLogged} onExitLogin={this.onExitLogin} />}

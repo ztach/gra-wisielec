@@ -6,9 +6,6 @@ import * as getAllType from '../../../helpers/typeApi';
 import './WyborTypuGry.scss';
 
 
-
-
-
 class GetTypeGame extends Component { 
 
   state = {
@@ -18,11 +15,12 @@ class GetTypeGame extends Component {
     type:[],
     isTypeLoading:false,
     addedTypes:[],
-    };
+    sumCount:[]
+   };
  
-  componentDidMount = async () => {
+   componentDidMount = async () => {
 
-     const type = await getAllType.getAllTypes();
+     const type = await getAllType.getAllTypesCount();
     
     this.setState({
       type,
@@ -37,6 +35,7 @@ class GetTypeGame extends Component {
         let x = {
           id:element.id,
           typ:element.typ,
+          count:element.dictcount,
           isChecked:false
         }
         newType.push(x);
@@ -60,6 +59,14 @@ class GetTypeGame extends Component {
     
   }
 
+  onSumaPytan = (x) => {
+    let tab=[];
+    tab.push(x)
+    this.setState(p => ({
+      sumCount: [...this.state.sumCount,x]
+    })
+    )
+  }
 
 
   handleCheckChieldElement = (event) => {
@@ -77,25 +84,30 @@ class GetTypeGame extends Component {
 
 
   onClickAddType = e => {
+    const {sumCount,type} = this.state;
     const chd = e.target.checked;
-    const cht = this.state.checkTab;
     const id = parseInt(e.target.name);
     const {addedTypes} = this.state;
     let idx = addedTypes.findIndex(item => parseInt(item) === id );
+    let typObj = type.find(item => parseInt(item.id) === id );
+    let count = Object.keys(typObj).map(item=>typObj[item]);
+    
+    console.log('count',count[2])
+    
     
     if(idx===-1 && chd){
-      console.log('name,checked,checktab',id,chd,cht);
       this.setState({
         checkTab:true,
         isAddedType:true,
         addedTypes:[...addedTypes,id].sort((a,b) => a-b )
       })
-      
+      this.onSumaPytan(count[2])
     }else{
       this.setState({
         addedTypes: this.state.addedTypes.filter(item => parseInt(item) !== id ),
         checkTab:false,
       })
+      this.onSumaPytan(-count[2])
     }
     
   }
@@ -104,16 +116,24 @@ class GetTypeGame extends Component {
   onAceptType = () => {
     const {addedTypes} = this.state;
     this.props.onAddedTypeState(addedTypes);
-}
+
+
+  }
+
+  onSumaNarastajaco = ()=>{
+    
+  }
+
 
 render () {
     const {user} = this.props;
-    
+    const {sumCount} = this.state;
     if(user[0].rola === -1){
       return <div>wejście nieuprawnione</div>
     }
 
-   
+    console.log('sumCount',sumCount,()=>sumCount.map(i=>i))
+
     return (
       <div className="GetTypeGame">
           <GetTypeGameList 

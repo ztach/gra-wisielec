@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import LoginModalForm from './LoginModalForm/LoginModalForm';
-//import * as getUsers from '../helpers/userApi';
 import './LoginPage.scss';
-//import {SubmitButton,HeaderLogin } from '../helpers/theme';
 
 export const myUser = null; 
 
@@ -17,11 +15,7 @@ export default class LoginPage extends Component {
         password:'gosc',
         rola:-1
       }],
-      
   }
-
-//  componentDidMount = () => {}
-//    this.onWyLogowanie();
 
 
   activateModal = () => {
@@ -37,10 +31,17 @@ export default class LoginPage extends Component {
     return document.getElementById('application');
   };
 
-
-
   render () {
-    const {onExitLogin,onLogowanie,modalActive,message,isLogged,user,userSession} = this.props;
+    const {
+            onExitLogin,
+            onLogowanie,
+            modalActive,
+            message,
+            isLogged,
+            user,
+            userSession
+            } = this.props;
+
     return (
       <>
       <LoginModalForm 

@@ -57,9 +57,9 @@ class MainGame extends Component {
           dict = await getAllType.getAllDicts();
        }
        this.setState({
-        dict
+        dict,
         })
- 
+
      }
 
   componentDidUpdate = ()=>{
@@ -278,7 +278,7 @@ arraysEqual = (a, b) => {
     
         const {onZalogowac} = this.props;
 
-
+        
 
  return ( 
 <>
@@ -323,14 +323,16 @@ arraysEqual = (a, b) => {
         user={this.props.user} 
        />
        
-  
+      {hasloIsOk?
+        null
+        :
         <KeyboardEventHandler 
             handleKeys={['all']} 
             onKeyEvent={(key,e) => 
               key.altKey? '' : this.setEventKey(key,e) 
             } 
         />
-
+      }
       </div>
   </div>
 

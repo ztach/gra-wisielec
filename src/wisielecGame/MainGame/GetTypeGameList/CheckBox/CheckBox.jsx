@@ -8,7 +8,10 @@ export const CheckBox = props => {
         type="checkbox" 
         checked={props.isChecked} 
         name={props.id} 
-        value={props.id} />
+        value={props.id} 
+        count={props.count}        
+        onChange={item=>item.value}
+      />
     </>
   )
 }

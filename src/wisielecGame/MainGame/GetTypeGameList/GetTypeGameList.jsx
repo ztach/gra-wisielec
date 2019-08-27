@@ -13,7 +13,7 @@ const {
       handleCheckChieldElement,
         } = props;
 
-  const theader = ['Id','Hasło','Zaznacz'];
+  const theader = ['Id','Hasło','Zaznacz','Ilość pytań'];
   
 
   const tbodyr = type.map(item => 
@@ -29,7 +29,9 @@ const {
         />
       }
     </td>
-    
+    <td className="GetTypeGame___body_del">
+      {item.count}
+    </td>
     </tr>
     ) 
 
