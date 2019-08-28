@@ -278,8 +278,6 @@ arraysEqual = (a, b) => {
     
         const {onZalogowac} = this.props;
 
-        console.log('menu game',this.props.sumCount)
-
  return ( 
 <>
 {dict.length !== 0? 

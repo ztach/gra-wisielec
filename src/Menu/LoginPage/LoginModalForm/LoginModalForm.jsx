@@ -17,7 +17,8 @@ class LoginModalForm extends PureComponent {
         deactivateModal,
         getApplicationNode,
         modalActive,
-        submitUser
+        submitUser,
+        users
       } = this.props
 
     const modal = modalActive
@@ -36,7 +37,7 @@ class LoginModalForm extends PureComponent {
         >
           <div id="demo-one-modal" className="modal modal-body">
           
-            <FormUser 
+            <FormUser users={users}
                       logowanie={logowanie} 
                       subminUser={onLogowanie} 
                       message={message} 

@@ -59,13 +59,12 @@ class GetTypeGame extends Component {
       type:[...newType],
     })
 
-    //this.onSumaNarastajaco(this.props.sumCountArr)
-    console.log('did mount',this.props.sumCountArr)
   }
 
   componentWillUnmount = () => {
-    const {sumCount,sumCountArr} = this.state;
-    console.log(`wymontowany count ${sumCount} sum ${sumCountArr}`)
+    //const {sumCount,sumCountArr} = this.state;
+    //console.log(`wymontowany count ${sumCount} sum ${sumCountArr}`)
+    //tu zapisywać dane do zapamiętania w głównym stejcie
   }
 
 

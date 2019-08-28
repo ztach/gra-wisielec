@@ -16,11 +16,12 @@ class MyMenu extends PureComponent {
       isAddUser:false,
       message:'',
       isLogged:false,
+      users:[],
       user:[{
         id:2,
         login:'gość',
         password:'gosc',
-        rola:1
+        rola:-1
       }],
       modalActive:false,
       sesionIsSaved:false,
@@ -187,7 +188,6 @@ render () {
           sumCountArr,
           user} = this.state;
 
-          console.log('index',sumCountArr,sumCount)
 return (
       <Router basename={process.env.PUBLIC_URL} >
       <div className="SplitPane"> 
