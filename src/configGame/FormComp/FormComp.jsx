@@ -78,7 +78,7 @@ class FormComp extends PureComponent {
 
   updateTyp(handleChange, values) {
     return (
-      <input
+      <textarea
         className="insertBlock__insert"
         type="typ"
         name="typ"
@@ -98,7 +98,7 @@ class FormComp extends PureComponent {
           onChange={handleChange}
           value={values.sl}
         />
-        <input
+        <textarea
           className="insertBlock__insert_gt"
           type="gt"
           name="gt"

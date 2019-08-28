@@ -119,7 +119,7 @@ class InsertDataType extends PureComponent {
             <h4>Wprowadź znaczenie hasła:</h4>
             <div>{errors.content}</div>
 
-            <input
+            <textarea
             className="RPanel___down__right_input_dict" 
             type="text" 
             name="gt" 
