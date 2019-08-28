@@ -30,6 +30,8 @@ class MyMenu extends PureComponent {
         begin_date:''
       }],
       addedType:[],
+      sumCount:0,
+      sumCountArr:[]
   }
 
   onAddedTypeState = (x) => {
@@ -154,14 +156,38 @@ class MyMenu extends PureComponent {
     })
   }
 
+  onSumaNarastajaco = (array)=>{
+    let wynik=0;
+    for (let i = 0; i < array.length; i++) {
+      const el = array[i];
+        wynik=wynik+parseInt(el)
+    }
+    this.setState({
+      sumCount:wynik,
+    })
+    return wynik;
+  }
+ 
+  onSumaPytanArray = (arr,x) => {
+    this.setState({
+      sumCountArr: arr,
+      sumCount:x
+    })
+
+  }
+  
+
   
 render () {
   const {userSession,
           modalActive, 
           message, 
           isLogged, 
+          sumCount,
+          sumCountArr,
           user} = this.state;
 
+          console.log('index',sumCountArr,sumCount)
 return (
       <Router basename={process.env.PUBLIC_URL} >
       <div className="SplitPane"> 
@@ -176,7 +202,7 @@ return (
       </header>
       
       <main  className="SplitPane-main">
-        {<Pages onAddedTypeState={this.onAddedTypeState} addedType={this.state.addedType} onZalogowac={this.onZalogowac} userSession={userSession} user={user} onLogowanie={this.onLogowanie} modalActive={modalActive}  message={message} isLogged={isLogged} onExitLogin={this.onExitLogin} />}
+        {<Pages onSumaPytanArray={this.onSumaPytanArray} sumCountArr={sumCountArr} sumCount={sumCount} onAddedTypeState={this.onAddedTypeState} addedType={this.state.addedType} onZalogowac={this.onZalogowac} userSession={userSession} user={user} onLogowanie={this.onLogowanie} modalActive={modalActive}  message={message} isLogged={isLogged} onExitLogin={this.onExitLogin} />}
       </main>
       <footer className="SplitPane-footer" >
         {<Footer  user={user} />}

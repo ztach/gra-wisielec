@@ -257,7 +257,7 @@ arraysEqual = (a, b) => {
     }
   }
   
-  
+
   render() { 
     const {
           dict,
@@ -278,7 +278,7 @@ arraysEqual = (a, b) => {
     
         const {onZalogowac} = this.props;
 
-        
+        console.log('menu game',this.props.sumCount)
 
  return ( 
 <>
@@ -299,7 +299,6 @@ arraysEqual = (a, b) => {
   powrotDoGry={this.powrotDoGry}
   /> 
   :       
-
 <div id="PanelGlowny" className="Panel">
 
   <div className="Panel___up">
@@ -319,9 +318,10 @@ arraysEqual = (a, b) => {
       <div  className="Panel___up__left_data">
       <MenuGameView 
         addedType={this.props.addedType}
+        sumCount={this.props.sumCount}
         onZalogowac={onZalogowac} 
         user={this.props.user} 
-       />
+      />
        
       {hasloIsOk?
         null
@@ -379,9 +379,10 @@ arraysEqual = (a, b) => {
 
   <MenuGameView 
     addedType={this.props.addedType}
+    sumCount={this.props.sumCount}
     onZalogowac={onZalogowac} 
     user={this.props.user} 
-   />
+/>
    </div>
   }
 </>

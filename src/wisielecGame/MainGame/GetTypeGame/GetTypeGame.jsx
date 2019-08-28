@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import GetTypeGameList from '../GetTypeGameList/GetTypeGameList';
 import * as getAllType from '../../../helpers/typeApi';
 
@@ -15,17 +15,20 @@ class GetTypeGame extends Component {
     type:[],
     isTypeLoading:false,
     addedTypes:[],
-    sumCount:[]
+    sumCountArr:[],
+    sumCount:0
    };
  
-   componentDidMount = async () => {
+  componentDidMount = async () => {
 
      const type = await getAllType.getAllTypesCount();
     
     this.setState({
       type,
       isTypeLoading:true,
-      addedTypes:this.props.addedType
+      addedTypes:this.props.addedType,
+      sumCountArr:this.props.sumCountArr,
+      sumCount:this.props.sumCount,
       }) 
   
       let newType = []
@@ -41,7 +44,6 @@ class GetTypeGame extends Component {
         newType.push(x);
       }
 
-
     for (let j = 0; j < newType.length; j++) {
       let jTyp=newType[j].id;
 
@@ -54,19 +56,18 @@ class GetTypeGame extends Component {
       }
     }
     this.setState ({
-      type:[...newType]
+      type:[...newType],
     })
-    
+
+    //this.onSumaNarastajaco(this.props.sumCountArr)
+    console.log('did mount',this.props.sumCountArr)
   }
 
-  onSumaPytan = (x) => {
-    let tab=[];
-    tab.push(x)
-    this.setState(p => ({
-      sumCount: [...this.state.sumCount,x]
-    })
-    )
+  componentWillUnmount = () => {
+    const {sumCount,sumCountArr} = this.state;
+    console.log(`wymontowany count ${sumCount} sum ${sumCountArr}`)
   }
+
 
 
   handleCheckChieldElement = (event) => {
@@ -82,83 +83,86 @@ class GetTypeGame extends Component {
     this.setState({type: type})
   }
 
-
   onClickAddType = e => {
-    const {sumCount,type} = this.state;
+    const {type,addedTypes} = this.state;
     const chd = e.target.checked;
     const id = parseInt(e.target.name);
-    const {addedTypes} = this.state;
+
     let idx = addedTypes.findIndex(item => parseInt(item) === id );
     let typObj = type.find(item => parseInt(item.id) === id );
     let count = Object.keys(typObj).map(item=>typObj[item]);
-    
-    console.log('count',count[2])
-    
-    
+
     if(idx===-1 && chd){
       this.setState({
         checkTab:true,
         isAddedType:true,
         addedTypes:[...addedTypes,id].sort((a,b) => a-b )
       })
-      this.onSumaPytan(count[2])
+      this.onSumaPytanArray(count[2])
     }else{
       this.setState({
         addedTypes: this.state.addedTypes.filter(item => parseInt(item) !== id ),
         checkTab:false,
       })
-      this.onSumaPytan(-count[2])
+      this.onSumaPytanArray(-count[2])
     }
-    
   }
-
 
   onAceptType = () => {
-    const {addedTypes} = this.state;
+    const {addedTypes, sumCountArr,sumCount} = this.state;
     this.props.onAddedTypeState(addedTypes);
-
-
+    this.props.onSumaPytanArray(sumCountArr,sumCount)
   }
 
-  onSumaNarastajaco = ()=>{
-    
+  onSumaPytanArray = (x) => {
+    this.setState({
+      sumCountArr: [...this.state.sumCountArr,x],
+      sumCount:this.state.sumCount + x
+    })
   }
+  
 
 
 render () {
     const {user} = this.props;
-    const {sumCount} = this.state;
+    const {sumCount,sumCountArr} = this.state;
     if(user[0].rola === -1){
       return <div>wejście nieuprawnione</div>
     }
 
-    console.log('sumCount',sumCount,()=>sumCount.map(i=>i))
-
+   
     return (
       <div className="GetTypeGame">
           <GetTypeGameList 
               handleCheckChieldElement={this.handleCheckChieldElement}
+              onSumaPytanArray={this.props.onSumaPytanArray}
               type={this.state.type} 
               checkTab={this.state.checkTab}
               addedTypes={this.state.addedTypes}
               addedType={this.props.addedType}
               onAceptType={this.onAceptType}
-              
+              sumCountArr={sumCountArr}
+              sumCount={sumCount}
           />
 
       </div>
     );
   }
 }
-
+/*
 GetTypeGame.propTypes = {
     user:PropTypes.array,
     type:PropTypes.array,
-    dict:PropTypes.array
+    dict:PropTypes.array,
+    sumCount:PropTypes.number,
+    sumCountArr:PropTypes.array,
+    onSumaPytanArray:PropTypes.func
 };
 
 GetTypeGame.defaultProps = {
   // bla: 'test',
+  sumCount:0,
+  sumCountArr:[],
   user:[{
     id: 2,
     login: "gość",
@@ -177,5 +181,5 @@ GetTypeGame.defaultProps = {
     polecenie: "",
   }]
 };
-
+*/
 export default GetTypeGame;

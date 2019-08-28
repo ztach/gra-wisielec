@@ -4,15 +4,12 @@ import {NavLink} from 'react-router-dom';
 
 class MenuGameView extends React.Component  {
 
-  state = {
     
-  }
-  
   render(){
 
   const {login,rola} = this.props.user[0];
   const {onZalogowac} = this.props;
-  
+ 
   return (
     <>
 

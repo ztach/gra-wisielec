@@ -11,11 +11,11 @@ const {
       addedTypes,
       onAceptType,
       handleCheckChieldElement,
+      sumCount,
         } = props;
 
   const theader = ['Id','Hasło','Zaznacz','Ilość pytań'];
   
-
   const tbodyr = type.map(item => 
   <tr key={item.id} >
     <td  className="GetTypeGame___body_id">{item.id}</td>
@@ -39,10 +39,19 @@ const {
 
 return (
       <div className="GetTypeGame___up">
-      <h3>Wybierz hasła do gry</h3>
+      <h3>Wybierz hasła do gry {sumCount} </h3>
         <TabListSzablon tbodyr={tbodyr}  theader={theader} />
-      <h3>Wybrałeś do gry:  {mapa}</h3>
+      <h3>{sumCount === 0? 
+      <span>
+        Wybierz hasła z punktami!!!
+        </span>
+        :
+       <span> Wybrałeś do gry:  {mapa}    - suma haseł = {sumCount} </span>}   </h3>
+      {sumCount === 0?
+      null
+      :
       <button className="GetTypeGame___btn" onClick={onAceptType}><Link to="/gra"> Zaakceptuj wybór </Link></button>
+      }
     </div>
     );
 }
