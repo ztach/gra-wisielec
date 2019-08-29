@@ -37,3 +37,6 @@ export const allSessionApiUrl = id =>
 
 export const gamePointsIdApiUrl = id =>
     id ? `${serverUrl}/gamePoints/user/${id}` : `${serverUrl}/gamePoints/`;
+
+export const gamePointsAddApiUrl = id =>
+    id ? `${serverUrl}/setGamePoints/${id}`: `${serverUrl}/setGamePoints/`

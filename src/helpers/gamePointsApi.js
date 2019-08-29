@@ -1,4 +1,4 @@
-import {gamePointsIdApiUrl} from './routes';
+import {gamePointsAddApiUrl,gamePointsIdApiUrl} from './routes';
 import * as api from './apis';
 
 export const getAllgetGamePoints = () => 
@@ -7,3 +7,5 @@ export const getAllgetGamePoints = () =>
 export const getGamePointsId = (id) =>
     api.get(gamePointsIdApiUrl(id))
 
+export const createGamePoints = params =>
+    api.post(gamePointsAddApiUrl(),{...params})

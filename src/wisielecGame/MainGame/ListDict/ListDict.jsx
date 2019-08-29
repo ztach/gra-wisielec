@@ -1,11 +1,11 @@
 import React from 'react';
 import RysunekKresek from '../RysunekKresek/RysunekKresek';
 import PasekSrodkowy from '../PasekSrodkowy/PasekSrodkowy';
-import KoniecGry from '../KoniecGry/KoniecGry';    
+import GameOver from '../GameOver/GameOver';    
 
 const ListDict = (props) => {
-    const { wyborHasla,
-            isWybraneHaslo,
+
+  const { 
             wybraneHaslo,
             wybranaLitera,
             zapamietajWybraneLitery,
@@ -16,56 +16,24 @@ const ListDict = (props) => {
             tabHaslo,
             gameOver,
             hasloIsOk,
-            powrotDoGry
           } = props;
+
 
     let haslo = wybraneHaslo.sl === undefined? [] : wybraneHaslo.sl.split('')
 
-    return ( 
+  return ( 
         <div className="Panel___down">
-
         {/* Panel środkowy z buttonem i podpowiedzią */}
-            <PasekSrodkowy 
-                haslo={haslo}  
-                wyborHasla={wyborHasla}
-                isWybraneHaslo={isWybraneHaslo}
-                wybranaLitera={wybranaLitera}
-                wybraneHaslo={wybraneHaslo}
-                clickCount={clickCount}
-                isClicked={isClicked}
-                buttonClicked={buttonClicked}
-                clickBadCount={clickBadCount}
-                tabHaslo={tabHaslo}
-                zapamietajWybraneLitery={zapamietajWybraneLitery}
-                gameOver={gameOver}
-                hasloIsOk={hasloIsOk}
-                powrotDoGry={powrotDoGry}
-            />
-        {/* end button i podpowiedzią */}
+            <PasekSrodkowy {...props} />
 
-            
+        {/* end button i podpowiedzią */}
       {gameOver || hasloIsOk? 
       <div className="Panel___down__down">
-        <KoniecGry 
-          powrotDoGry={powrotDoGry} 
-          haslo={haslo}  
-          wyborHasla={wyborHasla}
-          isWybraneHaslo={isWybraneHaslo}
-          wybranaLitera={wybranaLitera}
-          wybraneHaslo={wybraneHaslo}
-          clickCount={clickCount}
-          isClicked={isClicked}
-          buttonClicked={buttonClicked}
-          clickBadCount={clickBadCount}
-          tabHaslo={tabHaslo}
-          zapamietajWybraneLitery={zapamietajWybraneLitery}
-          gameOver={gameOver}
-          hasloIsOk={hasloIsOk}
-        />
+        <GameOver {...props} />
         </div>
             :
         <div className="Panel___down__down">
-            <RysunekKresek 
+            <RysunekKresek {...props}
                 zapamietajWybraneLitery={zapamietajWybraneLitery}
                 haslo={haslo} 
                 wybranaLitera={wybranaLitera} 
@@ -77,9 +45,40 @@ const ListDict = (props) => {
             />
         </div>
       }
-      
         </div>
      );
 }
  
 export default ListDict;
+
+                // haslo={haslo}  
+                // wyborHasla={wyborHasla}
+                // isWybraneHaslo={isWybraneHaslo}
+                // wybranaLitera={wybranaLitera}
+                // wybraneHaslo={wybraneHaslo}
+                // clickCount={clickCount}
+                // isClicked={isClicked}
+                // buttonClicked={buttonClicked}
+                // clickBadCount={clickBadCount}
+                // tabHaslo={tabHaslo}
+                // zapamietajWybraneLitery={zapamietajWybraneLitery}
+                // gameOver={gameOver}
+                // hasloIsOk={hasloIsOk}
+                // powrotDoGry={powrotDoGry}
+                // user={user} 
+                // onSetGameTimer={onSetGameTimer}
+
+          // powrotDoGry={powrotDoGry} 
+          // haslo={haslo}  
+          // wyborHasla={wyborHasla}
+          // isWybraneHaslo={isWybraneHaslo}
+          // wybranaLitera={wybranaLitera}
+          // wybraneHaslo={wybraneHaslo}
+          // clickCount={clickCount}
+          // isClicked={isClicked}
+          // buttonClicked={buttonClicked}
+          // clickBadCount={clickBadCount}
+          // tabHaslo={tabHaslo}
+          // zapamietajWybraneLitery={zapamietajWybraneLitery}
+          // gameOver={gameOver}
+          // hasloIsOk={hasloIsOk}

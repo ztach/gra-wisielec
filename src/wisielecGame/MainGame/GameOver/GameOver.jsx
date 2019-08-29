@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-class KoniecGry extends PureComponent { 
+class GameOver extends PureComponent { 
 
   render () {
     const {
@@ -30,4 +30,4 @@ class KoniecGry extends PureComponent {
 
 
 
-export default KoniecGry;
+export default GameOver;

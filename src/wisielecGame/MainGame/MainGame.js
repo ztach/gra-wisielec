@@ -37,6 +37,8 @@ class MainGame extends Component {
     dictLength:0,
     maxPicturesCount:10,
     eventKey:'',
+    timerStart:'',
+    timerStop:''
    }
 
 
@@ -86,13 +88,29 @@ class MainGame extends Component {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-   wyborHasla = () => {
+  onSetGameTimer = x => {
+    const mDate = new Date();
+    if(x===1){
+      this.setState({
+        timerStart:mDate.toLocaleString('sv-SE'),
+      })
+    }else{
+      this.setState({
+        timerStop:mDate.toLocaleString('sv-SE')
+      })
+    }
+  }
+
+
+  wyborHasla = () => {
      let id = this.getRandomInt(0,this.state.dict.length)
      let w = this.state.dict[id];
     
     let haslo = w['sl'] === undefined? [] : w['sl'].split('')
     haslo=haslo.map(item=>item.toUpperCase());
     haslo=haslo.filter((item) => item !== ' ');
+    
+    this.onSetGameTimer(1);
 
      this.setState({
        wybraneHaslo:w,
@@ -282,19 +300,21 @@ arraysEqual = (a, b) => {
 <>
 {dict.length !== 0? 
 <>
-{gameOver? <PanelGameOver  
-  isWybraneHaslo={isWybraneHaslo}
-  wybraneHaslo={wybraneHaslo}
-  wybranaLitera={wybranaLitera}
-  zapamietajWybraneLitery={zapamietajWybraneLitery}
-  clickCount={clickCount}
-  isClicked={isClicked}
-  buttonClicked={buttonClicked}
-  clickBadCount={clickBadCount}
-  tabHaslo={tabHaslo}
-  gameOver={gameOver}
-  hasloIsOk={hasloIsOk}
-  powrotDoGry={this.powrotDoGry}
+{gameOver? 
+    <PanelGameOver  
+          isWybraneHaslo={isWybraneHaslo}
+          wybraneHaslo={wybraneHaslo}
+          wybranaLitera={wybranaLitera}
+          zapamietajWybraneLitery={zapamietajWybraneLitery}
+          clickCount={clickCount}
+          isClicked={isClicked}
+          buttonClicked={buttonClicked}
+          clickBadCount={clickBadCount}
+          tabHaslo={tabHaslo}
+          gameOver={gameOver}
+          hasloIsOk={hasloIsOk}
+          powrotDoGry={this.powrotDoGry}
+          user={this.props.user} 
   /> 
   :       
 <div id="PanelGlowny" className="Panel">
@@ -311,7 +331,8 @@ arraysEqual = (a, b) => {
         tabHaslo={tabHaslo}
         gameOver={gameOver}
         hasloIsOk={hasloIsOk}
-        maxPicturesCount={maxPicturesCount}     
+        maxPicturesCount={maxPicturesCount}
+        user={this.props.user} 
     />
       <div  className="Panel___up__left_data">
       <MenuGameView 
@@ -350,7 +371,7 @@ arraysEqual = (a, b) => {
   </div>
       
       <CreatePanelGame 
-          dict={dict} 
+          
           wyborHasla={this.wyborHasla} 
           wybraneHaslo={wybraneHaslo} 
           wybranaLitera={wybranaLitera}
@@ -366,6 +387,10 @@ arraysEqual = (a, b) => {
           hasloIsOk={hasloIsOk}
           powrotDoGry={this.powrotDoGry}
           maxPicturesCount={maxPicturesCount}
+          user={this.props.user} 
+          onSetGameTimer={this.onSetGameTimer}
+          timerStart={this.state.timerStart}
+          timerStop={this.state.timerStop}
           />
     
       </div>

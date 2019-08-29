@@ -19,7 +19,7 @@ class FormUser extends React.Component {
   const {submitUser,message,onExitLogin,users} = this.props;  
 
    const usersList = users.map(item => 
-    <option value={item.login} label={item.login} />
+    <option key={item.id} value={item.login} label={item.login} />
     )
 
   
@@ -70,6 +70,7 @@ class FormUser extends React.Component {
                     onChange={handleChange}  
                     placeholder="wpisz hasło"
                   />
+
                 </>
             </label>
             <div className="LoginPages__btn">

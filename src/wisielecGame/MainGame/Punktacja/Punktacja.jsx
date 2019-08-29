@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import * as getGamePoint from '../../../helpers/gamePointsApi';
-//import '../../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 import TabListSzablon from '../../../szablon/TabListSzablon';
 import './Punktacja.scss';
 import {Link} from 'react-router-dom';

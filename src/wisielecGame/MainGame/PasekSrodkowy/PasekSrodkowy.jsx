@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
-import ModalOpis from '../../../szablon/ModalForm'
+import OpisWygranej from './OpisWygranej/OpisWygranej';
+import OpisGryNaBelce from './OpisGryNaBelce/OpisGryNaBelce'
+import Button from '../../Button/Button';
+
 
 class PasekSrodkowy extends PureComponent {
 
@@ -20,10 +23,6 @@ class PasekSrodkowy extends PureComponent {
   const {wyborHasla,
         powrotDoGry,
         isWybraneHaslo,
-        wybraneHaslo,
-        clickCount,
-        clickBadCount,
-        zapamietajWybraneLitery,
         gameOver,
         hasloIsOk
       } = this.props;
@@ -32,63 +31,31 @@ class PasekSrodkowy extends PureComponent {
   return(
   <div className="Panel___down__up">
   <div className="Panel___down__up__sciaga">
-      {!isWybraneHaslo? <div className="Panel___down__up__sciaga_message" >Wybierz hasło!!! </div>:
-
-    <div className="Panel___down__up__sciaga_opis" >
-
-     {gameOver? null :
-        <>
-        {hasloIsOk?
-          <div style={{width:'100%',height:'200px', fontSize:'35px' }} >
-          <p> BRAWO </p>
-          <p> SZUKANE HASŁO TO:  "{wybraneHaslo.sl}"     </p>
-          <p> KLIKNIĄŁEŚ:  {clickCount}  razy            </p>
-          {clickBadCount<=0? 
-              null 
+      {!isWybraneHaslo? 
+      <div className="Panel___down__up__sciaga_message" >Wybierz hasło!!! </div>
+      :
+      <div className="Panel___down__up__sciaga_opis" >
+        {gameOver? null :
+            <>
+            {hasloIsOk?
+            <OpisWygranej {...this.props} />
               :
-              <p> 
-              {clickBadCount===1? 
-                      `I: 1 RAZ WALNĄŁEŚ W PŁOT` 
-                      : 
-                      <>{clickBadCount < 7?
-                      `I: ${clickBadCount} RAZY W PŁOT !!!` 
-                      :
-                      `NO TOŚ PRAWIE WISIAŁ`
-                      }</>
-              } 
-              </p> 
-          }
+              <OpisGryNaBelce 
+                      isActive={this.state.isActive}
+                      modalActive={this.state.modalActive}
+                      handleClick={this.handleClick}
+                      {...this.props} 
+              />
+              }
+              </>
+            }
           </div>
-          :
-          <div>
-          <span> UŻYTE LITERY:  [{zapamietajWybraneLitery}] </span>
-          <span> ILOŚĆ KLIKNIĘĆ:   ({clickCount})           </span>
-          <span> BŁĘDNE KLIKNIĘCIA: [{clickBadCount}]  </span>   
-          <button  className="btnOpis" onClick={this.handleClick } > opis:  </button>
-          
-          {this.state.isActive?
-            <ModalOpis
-                    title={"opis hasła"}
-                    modalActive={this.state.modalActive}
-                    message={wybraneHaslo.gt}
-                    handleClick={this.handleClick}
-             />
-             :
-             null
-          }
-          </div>
-          }
-          </>
-        }
-          
-          </div>
-
           }
       </div>
       {gameOver?
-      <button  className="Panel___down__up__btn" onClick={powrotDoGry} >POWRÓT DO GRY</button>
+        <Button opis={"POWRÓT DO GRY"} buttonClick={powrotDoGry} />
       :
-      <button className="Panel___down__up__btn" onClick={wyborHasla}>WYBIERZ HASŁO</button>
+        <Button opis={"WYBIERZ HASŁO"} buttonClick={wyborHasla} />
       }    
   </div>
 
