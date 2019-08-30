@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LoginModalForm from './LoginModalForm/LoginModalForm';
-import * as getUsers from '../../helpers/userApi';
+//import * as getUsers from '../../helpers/userApi';
 import './LoginPage.scss';
 
 export const myUser = null; 
@@ -8,21 +8,12 @@ export const myUser = null;
 export default class LoginPage extends Component { 
 
     state = {
-      users:[],
-      rola:1,
       isAddUser:false,
       user:[{
         login:'gosc',
         password:'gosc',
         rola:-1
       }],
-  }
-
-  componentDidMount = async () => {
-    const users = await getUsers.getUserLogin();
-    this.setState({
-      users
-    })
   }
 
 
@@ -46,8 +37,8 @@ export default class LoginPage extends Component {
             modalActive,
             message,
             isLogged,
-            user,
-            userSession
+            userSession,
+            user
             } = this.props;
 
     return (
@@ -56,7 +47,6 @@ export default class LoginPage extends Component {
                   modalActive={modalActive}
                   isLogged={isLogged} 
                   submitUser={onLogowanie} 
-                  users={this.state.users}
                   message={message} 
                   onExitLogin={onExitLogin} 
                   activateModal={this.activateModal}

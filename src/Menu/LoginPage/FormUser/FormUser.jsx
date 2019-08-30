@@ -1,12 +1,22 @@
 import React from 'react';
 import { Formik, Form } from "formik";
 import {Link} from 'react-router-dom';
+import * as getUsers from '../../../helpers/userApi';
 
 class FormUser extends React.Component {
 
   state = {
-    selected: ''
+    selected: '',
+    users:[]
   }
+
+  componentDidMount = async () => {
+    const users = await getUsers.getUserLogin();
+    this.setState({
+      users
+    })
+  }
+
 
  onSelect (option) {
     console.log('You selected ', option.label);
@@ -16,9 +26,9 @@ class FormUser extends React.Component {
   }
 
   render(){
-  const {submitUser,message,onExitLogin,users} = this.props;  
+  const {submitUser,message,onExitLogin} = this.props;  
 
-   const usersList = users.map(item => 
+   const usersList = this.state.users.map(item => 
     <option key={item.id} value={item.login} label={item.login} />
     )
 
@@ -40,11 +50,7 @@ class FormUser extends React.Component {
         render={({
           values,
           errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-          isSubmitting
+          handleChange
         }) => (
           <Form className="LoginPages__insert" >
             <label className="LoginPages__insert_label">
@@ -74,7 +80,7 @@ class FormUser extends React.Component {
                 </>
             </label>
             <div className="LoginPages__btn">
-              <button className="LoginPages__btn_left" type="submit" onClick={()=><Link to="/gra" /> } >
+              <button className="LoginPages__btn_left" type="submit"  >
                 Zaloguj
               </button>
               <button className="LoginPages__btn_right" type="exit" onClick={onExitLogin}>

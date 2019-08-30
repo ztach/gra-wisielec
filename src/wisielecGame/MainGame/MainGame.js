@@ -342,6 +342,8 @@ arraysEqual = (a, b) => {
         sumCount={this.props.sumCount}
         onZalogowac={onZalogowac} 
         user={this.props.user} 
+        isLogged={this.props.isLogged}
+        submitUser={this.props.onLogowanie} 
       />
        
       {hasloIsOk?
@@ -393,6 +395,7 @@ arraysEqual = (a, b) => {
           onSetGameTimer={this.onSetGameTimer}
           timerStart={this.state.timerStart}
           timerStop={this.state.timerStop}
+          
           />
     
       </div>

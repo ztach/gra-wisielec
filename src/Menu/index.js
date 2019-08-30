@@ -35,6 +35,15 @@ class MyMenu extends PureComponent {
       sumCountArr:[]
   }
 
+
+  componentDidMount = () => {
+    if (this.state.user[0].rola !== -1){    
+      if(this.state.userSession[0].idSesion > 0){
+        this.onSetEndSession(this.state.userSession[0].idSesion);
+      }
+    }
+  }
+
   onAddedTypeState = (x) => {
     this.setState({
       addedType:x
@@ -59,7 +68,8 @@ class MyMenu extends PureComponent {
       const mDate = new Date();
       let params = {
         user_id:x,
-        begin_date:mDate.toLocaleString('sv-SE')
+        begin_date:mDate.toLocaleString('sv-SE'),
+        gnd_date:mDate.toLocaleString('sv-SE')
       }
       const setSession = await getSession.createSesion(params);
       this.setState({
@@ -127,8 +137,8 @@ class MyMenu extends PureComponent {
           isLogged:!this.state.isLogged,
           modalActive:false
         })
-
         this.onSetBeginSession(loginId[0].id);
+        
 
      } else {
         this.setState({
@@ -142,13 +152,17 @@ class MyMenu extends PureComponent {
     this.setState({
       user:[{
         id:2,
-        login:'guest',
-        password:'guest',
+        login:'gość',
+        password:'gosc',
         rola:-1
       }],
       rola:-1,
-      modalActive:false
+      modalActive:false,
+      isLogged:false
     })
+    if(this.state.userSession[0].idSesion > 0){
+      this.onSetEndSession(this.state.userSession[0].idSesion);
+    }
   }
 
   onExitLogin = () => {
@@ -197,12 +211,12 @@ return (
         </div>
 
         <div className="menuHeader">
-          {<Header onZalogowac={this.onZalogowac} isLogged={isLogged} user={user} />}
+          {<Header onWyLogowanie={this.onWyLogowanie} onZalogowac={this.onZalogowac} isLogged={isLogged} user={user} />}
         </div>
       </header>
       
       <main  className="SplitPane-main">
-        {<Pages onSumaPytanArray={this.onSumaPytanArray} sumCountArr={sumCountArr} sumCount={sumCount} onAddedTypeState={this.onAddedTypeState} addedType={this.state.addedType} onZalogowac={this.onZalogowac} userSession={userSession} user={user} onLogowanie={this.onLogowanie} modalActive={modalActive}  message={message} isLogged={isLogged} onExitLogin={this.onExitLogin} />}
+        {<Pages onWyLogowanie={this.onWyLogowanie} onSumaPytanArray={this.onSumaPytanArray} sumCountArr={sumCountArr} sumCount={sumCount} onAddedTypeState={this.onAddedTypeState} addedType={this.state.addedType} onZalogowac={this.onZalogowac} userSession={userSession} user={user} onLogowanie={this.onLogowanie} modalActive={modalActive}  message={message} isLogged={isLogged} onExitLogin={this.onExitLogin} />}
       </main>
       <footer className="SplitPane-footer" >
         {<Footer  user={user} />}

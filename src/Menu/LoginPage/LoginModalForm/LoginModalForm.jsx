@@ -10,15 +10,9 @@ class LoginModalForm extends PureComponent {
 
     render () {
     const {
-        logowanie,
-        onLogowanie,
-        message,
-        onExitLogin,
         deactivateModal,
         getApplicationNode,
         modalActive,
-        submitUser,
-        users
       } = this.props
 
     const modal = modalActive
@@ -36,21 +30,14 @@ class LoginModalForm extends PureComponent {
           verticallyCenter={true}
         >
           <div id="demo-one-modal" className="modal modal-body">
-          
-            <FormUser users={users}
-                      logowanie={logowanie} 
-                      subminUser={onLogowanie} 
-                      message={message} 
-                      submitUser={submitUser}
-                      onExitLogin={onExitLogin} />
-        
+            <FormUser {...this.props} 
+            />
           </div>
         </AriaModal>
-        
       : 
       null
       ;
-
+      
     return (
       <>
         {modal}

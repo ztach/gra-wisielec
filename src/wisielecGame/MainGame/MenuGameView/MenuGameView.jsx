@@ -1,22 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
+//import ModalOpis from '../../../szablon/ModalForm'
+import LoginModalForm from '../../../Menu/LoginPage/LoginModalForm/LoginModalForm'
 
 class MenuGameView extends React.Component  {
+  state={
+    isActive:false,
+    modalActive:false,
+  }
+
+  handleClick = () =>  { 
+    console.log('klikam')
+    this.setState({
+      isActive:!this.state.isActive,
+      modalActive:!this.state.modalActive
+    })
+  }
+
 
     
   render(){
 
   const {login,rola} = this.props.user[0];
-  const {onZalogowac} = this.props;
+  const {onZalogowac,isLogged} = this.props;
  
   return (
     <>
 
-      {rola===-1?
+      {!isLogged?
       <div className="Panel___up__left_data-nzopis">Jesteś niezalogowany. Gość nie ma uprawnień!!!
       <p className="Panel___up__left_data-niezalogowany">
-        <NavLink name='login' to="/login" onClick={onZalogowac } ><span>zaloguj się ... </span></NavLink>
+          <>
+          <button  className="btnOpis" onClick={this.handleClick } > 
+          zaloguj się </button>
+
+          {this.state.isActive?
+            <LoginModalForm
+                    title={"opis hasła"}
+                    modalActive={this.state.modalActive}
+                    handleClick={this.handleClick}
+                    {...this.props}
+             />
+             :
+             null
+          }
+          </>
       </p>
       </div>
       :
@@ -33,7 +62,8 @@ class MenuGameView extends React.Component  {
         </p>
       </details>
       }
-      
+       
+
     </>
     )
     }
