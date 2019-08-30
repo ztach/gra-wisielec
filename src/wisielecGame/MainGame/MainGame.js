@@ -89,15 +89,17 @@ class MainGame extends Component {
   }
 
   onSetGameTimer = x => {
-    const mDate = new Date();
-    if(x===1){
-      this.setState({
-        timerStart:mDate.toLocaleString('sv-SE'),
-      })
-    }else{
-      this.setState({
-        timerStop:mDate.toLocaleString('sv-SE')
-      })
+    if (this.props.user[0].rola !== -1){
+      const mDate = new Date();
+      if(x===1){
+        this.setState({
+          timerStart:mDate.toLocaleString('sv-SE'),
+        })
+      }else{
+        this.setState({
+          timerStop:mDate.toLocaleString('sv-SE')
+        })
+      }
     }
   }
 

@@ -21,7 +21,7 @@ class MyMenu extends PureComponent {
         id:2,
         login:'gość',
         password:'gosc',
-        rola:1
+        rola:-1
       }],
       modalActive:false,
       sesionIsSaved:false,
@@ -54,7 +54,8 @@ class MyMenu extends PureComponent {
       })
     }
 
-    onSetBeginSession = async (x) => {
+  onSetBeginSession = async (x) => {
+    if (this.state.user[0].rola !== -1){
       const mDate = new Date();
       let params = {
         user_id:x,
@@ -66,17 +67,20 @@ class MyMenu extends PureComponent {
           idSesion: setSession.id,
           user_id:x,
           begin_date:mDate.toLocaleString('sv-SE')
-        }]
-      })
+          }]
+        }) 
     }
+  }
 
-    onSetEndSession = async (x) => {
+  onSetEndSession = async (x) => {
+    if (this.state.user[0].rola !== -1){
       const mDate = new Date();
       let params = {
         end_date:mDate.toLocaleString('sv-SE')
       }
       await getSession.updateSesion(x,params);
     }
+  }
 
 
 
@@ -126,8 +130,6 @@ class MyMenu extends PureComponent {
 
         this.onSetBeginSession(loginId[0].id);
 
-
-
      } else {
         this.setState({
           message:"Zły login lub hasło"
@@ -176,8 +178,7 @@ class MyMenu extends PureComponent {
 
   }
   
-
-  
+ 
 render () {
   const {userSession,
           modalActive, 
