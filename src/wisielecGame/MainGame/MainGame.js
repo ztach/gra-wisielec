@@ -42,11 +42,11 @@ class MainGame extends Component {
    }
 
 
-   componentWillUnmount = () => {
-    this.setState({
-      dict:[],
-    })
-   }
+  //  componentWillUnmount = () => {
+  //   this.setState({
+  //     dict:[],
+  //   })
+  //  }
  
  
   componentDidMount = async () => {
@@ -294,9 +294,11 @@ arraysEqual = (a, b) => {
           gameOver,
           hasloIsOk,
           maxPicturesCount,
+          timerStart,
+          timerStop
         } = this.state;
     
-        const {onZalogowac} = this.props;
+        const {onZalogowac,user,isLogged,userSession} = this.props;
 
  return ( 
 <>
@@ -342,7 +344,7 @@ arraysEqual = (a, b) => {
         sumCount={this.props.sumCount}
         onZalogowac={onZalogowac} 
         user={this.props.user} 
-        isLogged={this.props.isLogged}
+        isLogged={isLogged}
         submitUser={this.props.onLogowanie} 
       />
        
@@ -375,8 +377,10 @@ arraysEqual = (a, b) => {
   </div>
       
       <CreatePanelGame 
-          
-          wyborHasla={this.wyborHasla} 
+          timerStart={timerStart}
+          timerStop={timerStop}
+          user={user} 
+          userSession={userSession}
           wybraneHaslo={wybraneHaslo} 
           wybranaLitera={wybranaLitera}
           zapamietajWybraneLitery={zapamietajWybraneLitery}
@@ -389,13 +393,11 @@ arraysEqual = (a, b) => {
           tabZgadnijHaslo={tabZgadnijHaslo}
           gameOver={gameOver}
           hasloIsOk={hasloIsOk}
-          powrotDoGry={this.powrotDoGry}
           maxPicturesCount={maxPicturesCount}
-          user={this.props.user} 
+          wyborHasla={this.wyborHasla} 
+          powrotDoGry={this.powrotDoGry}
           onSetGameTimer={this.onSetGameTimer}
-          timerStart={this.state.timerStart}
-          timerStop={this.state.timerStop}
-          
+          isLogged={isLogged}
           />
     
       </div>
@@ -409,6 +411,7 @@ arraysEqual = (a, b) => {
     addedType={this.props.addedType}
     sumCount={this.props.sumCount}
     onZalogowac={onZalogowac} 
+    isLogged={isLogged}
     user={this.props.user} 
 />
    </div>

@@ -7,10 +7,8 @@ import './GetTypeGameList.scss';
 const GetTypeGameList = props => {
 const {
       type,
-      checkTab,
       addedTypes,
       onAceptType,
-      handleCheckChieldElement,
       sumCount,
         } = props;
 
@@ -23,8 +21,7 @@ const {
     <td className="GetTypeGame___body_typ"> {item.typ} </td>
     <td className="GetTypeGame___body_del">
      { <CheckBox 
-          checkTab={checkTab} 
-          handleCheckChieldElement={handleCheckChieldElement} 
+          {...props} 
           {...item} 
         />
       }

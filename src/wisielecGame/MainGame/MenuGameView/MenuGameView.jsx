@@ -11,7 +11,6 @@ class MenuGameView extends React.Component  {
   }
 
   handleClick = () =>  { 
-    console.log('klikam')
     this.setState({
       isActive:!this.state.isActive,
       modalActive:!this.state.modalActive
@@ -22,9 +21,9 @@ class MenuGameView extends React.Component  {
     
   render(){
 
-  const {login,rola} = this.props.user[0];
-  const {onZalogowac,isLogged} = this.props;
- 
+  const {login} = this.props.user[0];
+  const {isLogged} = this.props;
+
   return (
     <>
 

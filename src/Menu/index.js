@@ -76,7 +76,8 @@ class MyMenu extends PureComponent {
         userSession:[{
           idSesion: setSession.id,
           user_id:x,
-          begin_date:mDate.toLocaleString('sv-SE')
+          begin_date:mDate.toLocaleString('sv-SE'),
+          gnd_date:mDate.toLocaleString('sv-SE')
           }]
         }) 
     }
@@ -134,7 +135,7 @@ class MyMenu extends PureComponent {
           user:loginId,
           rola: loginId[0].rola,
           message:"Zostałeś zalogowany",
-          isLogged:!this.state.isLogged,
+          isLogged:true,
           modalActive:false
         })
         this.onSetBeginSession(loginId[0].id);
@@ -202,6 +203,7 @@ render () {
           sumCountArr,
           user} = this.state;
 
+
 return (
       <Router basename={process.env.PUBLIC_URL} >
       <div className="SplitPane"> 
@@ -211,7 +213,7 @@ return (
         </div>
 
         <div className="menuHeader">
-          {<Header onWyLogowanie={this.onWyLogowanie} onZalogowac={this.onZalogowac} isLogged={isLogged} user={user} />}
+          {<Header onWyLogowanie={this.onWyLogowanie} onZalogowac={this.onZalogowac} isLogged={isLogged} user={user} userSession={userSession}/>}
         </div>
       </header>
       

@@ -16,7 +16,8 @@ class GetTypeGame extends Component {
     isTypeLoading:false,
     addedTypes:[],
     sumCountArr:[],
-    sumCount:0
+    sumCount:0,
+    checked:false
    };
  
   componentDidMount = async () => {
@@ -39,7 +40,7 @@ class GetTypeGame extends Component {
           id:element.id,
           typ:element.typ,
           count:element.dictcount,
-          isChecked:false
+          checked:false
         }
         newType.push(x);
       }
@@ -51,7 +52,7 @@ class GetTypeGame extends Component {
       for (let i = 0; i < this.props.addedType.length; i++) {
           let iProp=this.props.addedType[i];
           if (iProp === jTyp){
-            newType.map(item => item.id === jTyp ? item.isChecked=true : null  )
+            newType.map(item => item.id === jTyp ? item.checked=true : null  )
           }
       }
     }
@@ -61,11 +62,11 @@ class GetTypeGame extends Component {
 
   }
 
-  componentWillUnmount = () => {
+//  componentWillUnmount = () => {
     //const {sumCount,sumCountArr} = this.state;
     //console.log(`wymontowany count ${sumCount} sum ${sumCountArr}`)
     //tu zapisywać dane do zapamiętania w głównym stejcie
-  }
+  //}
 
 
 
@@ -76,7 +77,7 @@ class GetTypeGame extends Component {
       
        if (parseInt(item.id)===parseInt(event.target.value)){
           this.onClickAddType(event);
-          item.isChecked =  event.target.checked
+          item.checked =  event.target.checked
         }
     })
     this.setState({type: type})
@@ -119,7 +120,12 @@ class GetTypeGame extends Component {
       sumCount:this.state.sumCount + x
     })
   }
-  
+
+  onChangeClick = e => {
+    this.setState({
+      checked: !this.state.checked 
+    })
+  }
 
 
 render () {
@@ -142,6 +148,8 @@ render () {
               onAceptType={this.onAceptType}
               sumCountArr={sumCountArr}
               sumCount={sumCount}
+              checked={this.state.checked}
+              onChangeClick={this.onChangeClick}
           />
 
       </div>

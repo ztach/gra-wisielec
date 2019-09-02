@@ -1,6 +1,5 @@
 import React from 'react';
 import { Formik, Form } from "formik";
-import {Link} from 'react-router-dom';
 import * as getUsers from '../../../helpers/userApi';
 
 class FormUser extends React.Component {

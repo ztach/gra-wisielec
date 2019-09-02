@@ -9,11 +9,11 @@ export default class LoginPage extends Component {
 
     state = {
       isAddUser:false,
-      user:[{
-        login:'gosc',
-        password:'gosc',
-        rola:-1
-      }],
+      // user:[{
+      //   login:'gosc',
+      //   password:'gosc',
+      //   rola:-1
+      // }],
   }
 
 

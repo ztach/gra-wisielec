@@ -30,23 +30,27 @@ class OpisWygranej extends React.Component {
       wybraneHaslo,
       clickBadCount,
       clickCount,
-      user
+      user,
+      userSession
     } = this.props;
     let dateStart=new Date(timerStart);
     let dateStop=new Date(timerStop);
     let dateDif = 0;
     dateDif = parseFloat((dateStop-dateStart)/1000);
+    let SessionId = userSession[0].idSesion;
 
-    //let hasloMap = Object.keys(wybraneHaslo).map(item=>wybraneHaslo[item]);
     let params = {
+      
       'play_time':dateDif,
       'count_click':clickCount,
       'bad_click':clickBadCount,
       'user_id':user[0].id,
-      'dict_id':Object.values(wybraneHaslo)[0]
+      'dict_id':Object.values(wybraneHaslo)[0],
+      'session_id':SessionId,
+      'begin_game':this.props.timerStart
     }
-    const setGame = await getGamePoint.createGamePoints(params);
-    console.log(setGame);
+     await getGamePoint.createGamePoints(params);
+    
   }
 
 
@@ -59,7 +63,7 @@ class OpisWygranej extends React.Component {
     {this.props.clickBadCount<=0? 
         null 
         :
-        <p> 
+        <div> 
         {this.props.clickBadCount===1? 
             <p className="Panel___down__up__sciaga_opis opisOk">JEDEN STRZAŁ NIECELNY!!!</p>
             : 
@@ -71,7 +75,7 @@ class OpisWygranej extends React.Component {
             }
             </>
         } 
-        </p> 
+        </div> 
     }
     </div>
     )

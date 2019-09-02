@@ -9,7 +9,7 @@ class Punktacja extends PureComponent {
   
   state = {
       hasError: false,
-      points:['','','','','',''],  
+      points:['','','','','','',''],  
   }
 
   componentDidMount = async () => {
@@ -41,25 +41,37 @@ class Punktacja extends PureComponent {
     const {points} = this.state;
     
     const tbodyr = points.map((item,idx) => 
-      <tr key={idx} >
+      {
+      let bd = new Date(item.begin_date).toLocaleString('sv-SE');
+      let ed = new Date(item.end_date).toLocaleString('sv-SE');
+      let bg = new Date(item.begin_game);
+      let bbg = bg.getHours()+':'+ bg.getMinutes()+':'+ bg.getSeconds();
+     return <tr key={idx} >
             <td> {item.id} </td>
+            <td> {bbg} </td>
             <td> {item.count_click} </td>
             <td> {item.bad_click} </td>
             <td> {item.play_time} </td>
             <td> {item.gracz} </td>
             <td> {item.haslo} </td>
             <td> {item.podpowiedz} </td>
+            <td> {bd} </td>
+            <td> {ed} </td>
       </tr>
+    }
     )
 
     const theader =[
         'id',
+        'początek gry',
         'wszystkie litery',
         'błędne litery',
         'czas gry',
         'gracz',
         'haslo',
-        'podpowiedź']
+        'podpowiedź',
+        'początek sesji',
+        'koniec sesji']
 
     return (
       <div className="Punktacja">
